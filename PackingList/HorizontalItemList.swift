@@ -28,7 +28,7 @@ import UIKit
 //
 class HorizontalItemList: UIScrollView {
   
-  var didSelectItem: ((item: UIView)->())?
+  var didSelectItem: ((_ item: UIView)->())?
   
   let buttonWidth: CGFloat = 60.0
   let padding: CGFloat = 10.0
@@ -37,7 +37,7 @@ class HorizontalItemList: UIScrollView {
     let rect = CGRect(x: 0, y: 120.0, width: inView.frame.width, height: 80.0)
     self.init(frame: rect)
     
-    for var i = 0; i < 10; i++ {
+    for i in 0 ..< 10 {
       let image = UIImage(named: "summericons_100px_0\(i).png")
       let imageView  = UIImageView(image: image)
       imageView.center = CGPoint(x: CGFloat(i) * buttonWidth + buttonWidth/2, y: buttonWidth/2)
@@ -45,7 +45,7 @@ class HorizontalItemList: UIScrollView {
       imageView.userInteractionEnabled = true
       addSubview(imageView)
       
-      let tap = UITapGestureRecognizer(target: self, action: Selector("didTapImage:"))
+      let tap = UITapGestureRecognizer(target: self, action: #selector(HorizontalItemList.didTapImage(_:)))
       imageView.addGestureRecognizer(tap)
     }
     
